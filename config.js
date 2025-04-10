@@ -1,0 +1,1 @@
+const APP_URL = '/sober_seeker_v2';

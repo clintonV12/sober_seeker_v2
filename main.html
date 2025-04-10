@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <!-- Bootstrap CSS -->
+    <link href="assets/css/core.css" rel="stylesheet">
+    <link href="assets/css/theme-default.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="assets/css/fonts/boxicons.css"/>
+    <style>
+      body {
+            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+
+      .navbar {
+        width: 100%;
+        background-color: rgba(20, 20, 20, 0.9);
+        backdrop-filter: blur(10px);
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+        border-bottom: 1px solid #3b4252;
+      }
+
+      .navbar .btn-icon, .navbar-toggler {
+        color: #ffffff;
+        font-size: 1.6em;
+      }
+
+      .navbar-toggler {
+        border: none;
+      }
+
+      .navbar-toggler-icon {
+        background-color: #ffffff;
+        border-radius: 5px;
+        padding: 4px;
+      }
+
+      .container {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            padding: 30px;
+            margin-top: 80px; /* Accounts for the menu bar */
+            animation: slideIn 0.8s ease-out;
+        }
+
+
+      .score, .question {
+        background: linear-gradient(to right, #ff8a00, #e52e71);
+        color: #fff;
+        text-align: center;
+        font-size: 1.2em;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: bold;
+        border: 2px solid #2575fc;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .option {
+        background: linear-gradient(to right, #ff8a00, #e52e71);
+        color: #fff;
+        padding: 12px;
+        text-align: center;
+        font-size: 1em;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s, color 0.3s, box-shadow 0.3s;
+        border: none;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+        margin-bottom: 15px;
+      }
+
+      .option:hover {
+        background: linear-gradient(to right, #e52e71, #ff8a00);
+        transform: scale(1.05);
+      }
+
+      .navbar-nav .nav-link {
+        color: #eceff4;
+        font-weight: 500;
+      }
+
+      .navbar-nav .nav-link:hover {
+        color: #88c0d0;
+      }
+
+      /* Small screen adjustments */
+      @media (max-width: 576px) {
+        .navbar .btn-icon, .navbar-toggler {
+          font-size: 1.4em;
+        }
+        
+        .container {
+          margin-top: 60px;
+          padding: 20px;
+        }
+
+        .score, .question {
+          font-size: 1em;
+          padding: 10px;
+        }
+
+        .option {
+          font-size: 0.9em;
+          padding: 10px;
+          margin-bottom: 10px;
+        }
+      }
+
+       .scanner-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    #camera-stream {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 8px;
+    }
+
+    .eye {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: #000;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .pupil {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #fff;
+    }
+
+    .scanner {
+        width: 100px;
+        height: 5px;
+        background-color: red;
+        animation: scan 2s infinite;
+    }
+
+    @keyframes scan {
+        0% { transform: translateY(-50px); }
+        50% { transform: translateY(0); }
+        100% { transform: translateY(-50px); }
+    }
+
+    .scan-text {
+        font-size: 20px;
+        color: #fff;
+        margin: 10px 0;
+    }
+
+    .progress-container {
+        width: 100%;
+        max-width: 400px;
+        height: 20px;
+        background-color: #333;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 0;
+        background-color: #00ff00;
+    }
+    </style>
+    <script src="app/controller.js"></script>
+  </head>
+  <body>
+    
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" style="background: lightgray">
+          <div class="app-brand demo">
+            <a href="#" class="app-brand-link mt-5">
+              <span class="app-brand-logo demo mb-5">
+              </span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sober Seeker</span>
+            </a>
+            
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none mt-5">
+              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
+          </div>
+        
+          <div class="menu-inner-shadow"></div>
+          <hr class="menu-divider"/>
+          
+          <ul class="menu-inner py-1">
+            <!-- Dashboard -->
+            <li class="menu-item active">
+              <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Home</div>
+              </a>
+            </li>
+        
+            <!-- Layouts -->
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-exit"></i>
+                <div data-i18n="Analytics">Sign Out</div>
+              </a>
+            </li>
+          </ul>
+
+          <footer class="content-footer footer bg-footer-theme">
+            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+              <div class="mb-2 mb-md-0">
+                Developed by
+                <a href="#" target="_blank" class="footer-link fw-bold">Sober Seeker (Pty) Ltd</a>
+              </div>
+            </div>
+          </footer>
+        </aside>
+        
+        <div class="layout-page">
+          <!-- Fixed Navbar with Back button and Hamburger Menu -->
+
+          <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar" style="border-bottom: none;"></nav>
+
+          <div
+              class="bs-toast toast toast-placement-ex m-2"
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+              data-delay="2000"
+              id = "errorT1"
+            >
+              <div class="toast-header">
+                <i class="bx bx-bell me-2"></i>
+                <div class="me-auto fw-semibold">Alert</div>
+                <small>Message</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body" id="toast-msg"></div>
+          </div>
+            
+          <!-- Quiz Content -->
+          <div id="app" class="container">
+            <!-- Full page will be dynamically rendered here -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+    <script type="module" src="app.js"></script>
+    <script src="app/nav-bar.js"></script>
+    <!-- Bootstrap JS (for optional interactive components) -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/libs/wow/wow.min.js"></script>
+    <script src="assets/js/libs/popper/popper.js"></script>
+    <script src="assets/js/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/helpers.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="app/ui-helpers.js"></script>
+    <script src="config.js"></script>
+  </body>
+</html>

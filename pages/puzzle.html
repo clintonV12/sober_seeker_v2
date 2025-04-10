@@ -1,0 +1,38 @@
+<!-- Quiz Content -->
+  <div class="score mb-3 d-flex justify-content-between align-items-center px-3" id="score">
+    <p id="score">Score: <span>0</span> Points</p>
+    <span id="puzzle-number">1 / 3</span>
+  </div>
+
+  <div class="mt-3 mb-3 text-center">
+    <div class="btn-group w-100" role="group" aria-label="First group">
+      <button type="button" class="btn btn-outline-secondary">
+        <i class="tf-icons bx bx-bell"></i>
+      </button>
+      <button type="button" class="btn btn-outline-secondary">
+        <i class="tf-icons bx bx-mask"></i>
+      </button>
+      <button type="button" class="btn btn-outline-secondary">
+        <i class="tf-icons bx bx-bar-chart"></i>
+      </button>
+      <button type="button" class="btn btn-outline-secondary">
+        <i class="tf-icons bx bx-refresh"></i>
+      </button>
+    </div>
+  </div> 
+
+
+  <div class="question text-center mb-3" id="puzzle-prompt">
+    Loading question...
+  </div>
+  <div class="question text-center mb-3" id="puzzle-shape">
+    ...
+  </div>
+
+  <div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action option" onclick="selectOption('A')" id="optionA">Option A</button>
+    <button type="button" class="list-group-item list-group-item-action option" onclick="selectOption('B')" id="optionB">Option B</button>
+    <button type="button" class="list-group-item list-group-item-action option" onclick="selectOption('C')" id="optionC">Option C</button>
+    <button type="button" class="list-group-item list-group-item-action option" onclick="selectOption('D')" id="optionD">Option D</button>
+  </div>
+
