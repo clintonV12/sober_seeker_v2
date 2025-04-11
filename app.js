@@ -54,16 +54,19 @@ async function router() {
             break;
         case 'physical':
             content = await Physical();
+            renderPage(content);
             const { initPhysical } = await import('./app/physical.js');
             initPhysical();
             break;
         case 'physical2':
             content = await Physical2();
+            renderPage(content);
             const { initPhysical2 } = await import('./app/physical2.js');
             initPhysical2();
             break;
         case 'transport':
             content = await Transport();
+            renderPage(content);
             //const { initTransport } = await import('./app/transaport.js');
             //initTransport();
             break;
