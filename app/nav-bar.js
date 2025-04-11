@@ -10,7 +10,7 @@ layoutMenuToggleHtml = `
 // Define the HTML for the user dropdown
 userDropdownHtml = `
     <li class="nav-item navbar-dropdown dropdown-user dropdown">
-        <a class="nav-link dropdown-toggle hide-arrow" onclick="refreshPoints()" href="javascript:void(0);" data-bs-toggle="dropdown">
+        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
             <i class="bx bx-user bx-sm"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
@@ -53,24 +53,9 @@ appNavBarHtml = `
     </div>
 `;
 
-function goToPuzzle() {
-    const initialPage = 'puzzle';
-    window.setPageName(initialPage);
-    window.router();
-}
-
-function goToQuiz() {
-    const initialPage = 'quiz';
-    window.setPageName(initialPage);
-    window.router();
-}
 
 function exitSite() {
     window.location.href = "index.html";  // Replace with your quiz page URL
-}
-
-function refreshPoints() {
-    document.getElementById("point_num").innerText = totalScore;
 }
 
 // Inject the navbar HTML into the element with the ID 'layout-navbar'

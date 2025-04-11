@@ -36,52 +36,43 @@ async function router() {
     switch (pagename) {
         case 'quiz':
             content = await Quiz();
-            
-            const script = document.createElement('script');
-            script.src = 'app/question.js';
-            script.async = true;
-            script.type = "module";
-            document.body.appendChild(script);
+            renderPage(content);
+            const { initQuiz } = await import('./app/question.js');
+            initQuiz();
             break;
         case 'info':
             content = await Info();
-
-            const script1 = document.createElement('script');
-            script1.src = 'app/info.js';
-            script1.async = true;
-            document.body.appendChild(script1);
+            renderPage(content);
+            const { initInfo } = await import('./app/info.js');
+            initInfo();
             break;
         case 'puzzle':
             content = await Puzzle();
-            const script2 = document.createElement('script');
-            script2.src = 'app/puzzle.js';
-            script2.async = true;
-            script2.type = "module";
-            document.body.appendChild(script2);
+            renderPage(content);
+            const { initPuzzle } = await import('./app/puzzle.js');
+            initPuzzle();
             break;
         case 'physical':
             content = await Physical();
-            const script3 = document.createElement('script');
-            script3.src = 'app/physical.js';
-            script3.async = true;
-            document.body.appendChild(script3);
+            const { initPhysical } = await import('./app/physical.js');
+            initPhysical();
             break;
         case 'physical2':
             content = await Physical2();
-            const script4 = document.createElement('script');
-            script4.src = 'app/physical2.js';
-            script4.async = true;
-            document.body.appendChild(script4);
+            const { initPhysical2 } = await import('./app/physical2.js');
+            initPhysical2();
             break;
         case 'transport':
             content = await Transport();
+            //const { initTransport } = await import('./app/transaport.js');
+            //initTransport();
             break;
         default:
             content = await Quiz();
+            renderPage(content);
+            await import('./app/question.js');
     }
-
-    renderPage(content);
-}
+} 
 
 // Function to handle navigation
 function navigate(event) {
