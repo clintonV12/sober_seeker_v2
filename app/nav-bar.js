@@ -23,37 +23,9 @@ userDropdownHtml = `
                             </div>
                         </div>
                         <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">Username</span>
-                            <small class="text-muted">Certificate Level</small>
+                            <span class="fw-semibold d-block">Guest</span>
                         </div>
                     </div>
-                </a>
-            </li>
-            <li><div class="dropdown-divider my-divider"></div></li>
-            <li>
-                <a class="dropdown-item" href="#">
-                    <span class="d-flex align-items-center align-middle">
-                        <i class="flex-shrink-0 bx bx-abacus me-2"></i>
-                        <span class="flex-grow-1 align-middle">Points</span>
-                        <span class="flex-shrink-0 badge badge-center rounded-pill bg-primary w-px-20 h-px-20" id="point_num">0</span>
-                    </span>
-                </a>
-            </li>
-            <li><div class="dropdown-divider my-divider"></div></li>
-            <li>
-                <a class="dropdown-item" href="#" onclick="goToQuiz()">
-                    <span class="d-flex align-items-center align-middle">
-                        <i class="flex-shrink-0 bx bx-poll me-2"></i>
-                        <span class="flex-grow-1 align-middle">Go to Quiz</span>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item" href="#" onclick="goToPuzzle()">
-                    <span class="d-flex align-items-center align-middle">
-                        <i class="flex-shrink-0 bx bx-customize me-2"></i>
-                        <span class="flex-grow-1 align-middle">Go to Puzzle</span>
-                    </span>
                 </a>
             </li>
             <li><div class="dropdown-divider my-divider"></div></li>

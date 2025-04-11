@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="assets/css/fonts/boxicons.css"/>
     <style>
       body {
-            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+        background: #ffd700;
+        color: #eceff4;
             font-family: 'Arial', sans-serif;
             color: #333;
             display: flex;
@@ -121,72 +122,72 @@
         }
       }
 
-       .scanner-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: 100vh;
-    }
-
-    #camera-stream {
-        width: 100%;
-        max-width: 400px;
-        border-radius: 8px;
-    }
-
-    .eye {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        background-color: #000;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 20px 0;
-    }
-
-    .pupil {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: #fff;
-    }
-
-    .scanner {
-        width: 100px;
-        height: 5px;
-        background-color: red;
-        animation: scan 2s infinite;
-    }
-
-    @keyframes scan {
-        0% { transform: translateY(-50px); }
-        50% { transform: translateY(0); }
-        100% { transform: translateY(-50px); }
-    }
-
-    .scan-text {
-        font-size: 20px;
-        color: #fff;
-        margin: 10px 0;
-    }
-
-    .progress-container {
-        width: 100%;
-        max-width: 400px;
-        height: 20px;
-        background-color: #333;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    .progress-bar {
-        height: 100%;
-        width: 0;
-        background-color: #00ff00;
-    }
+      #video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 640px; /* Or desired video resolution */
+            height: auto; /* Maintain aspect ratio */
+            margin: 0 auto; /* Center the video and canvas */
+        }
+        video {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 8px; /* Rounded corners for video */
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            pointer-events: none; /* Ensure canvas doesn't intercept clicks */
+            border-radius: 8px; /* Match video border-radius */
+        }
+        h2 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            color: #2c3e50; /* Darker heading color */
+            margin-bottom: 20px;
+            text-align: center; /* Center heading */
+        }
+        p {
+            font-family: 'Roboto', sans-serif;
+            color: #555;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        #alerts-container {
+            margin-top: 20px;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center alerts */
+        }
+        .alert {
+            margin-bottom: 10px;
+            padding: 12px 16px;
+            border-radius: 6px;
+            background-color: #ffe082; /* Light yellow for alerts */
+            color: #7a6800;
+            border: 1px solid #ffc107;
+            width: 100%;
+            max-width: 400px; /* Limit alert width */
+            text-align: center;
+        }
+        .alert-warning {
+            background-color: #ffe082;
+            color: #7a6800;
+            border-color: #ffc107;
+        }
+        .alert-danger {
+            background-color: #f87979;
+            color: #ffffff;
+            border-color: #dc3545;
+        }
+        .hidden {
+            display: none;
+        }
     </style>
     <script src="app/controller.js"></script>
   </head>
@@ -194,49 +195,6 @@
     
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
-        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" style="background: lightgray">
-          <div class="app-brand demo">
-            <a href="#" class="app-brand-link mt-5">
-              <span class="app-brand-logo demo mb-5">
-              </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sober Seeker</span>
-            </a>
-            
-            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none mt-5">
-              <i class="bx bx-chevron-left bx-sm align-middle"></i>
-            </a>
-          </div>
-        
-          <div class="menu-inner-shadow"></div>
-          <hr class="menu-divider"/>
-          
-          <ul class="menu-inner py-1">
-            <!-- Dashboard -->
-            <li class="menu-item active">
-              <a href="#" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Home</div>
-              </a>
-            </li>
-        
-            <!-- Layouts -->
-            <li class="menu-item">
-              <a href="#" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-exit"></i>
-                <div data-i18n="Analytics">Sign Out</div>
-              </a>
-            </li>
-          </ul>
-
-          <footer class="content-footer footer bg-footer-theme">
-            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-              <div class="mb-2 mb-md-0">
-                Developed by
-                <a href="#" target="_blank" class="footer-link fw-bold">Sober Seeker (Pty) Ltd</a>
-              </div>
-            </div>
-          </footer>
-        </aside>
         
         <div class="layout-page">
           <!-- Fixed Navbar with Back button and Hamburger Menu -->
@@ -281,5 +239,7 @@
     <script src="assets/js/main.js"></script>
     <script src="app/ui-helpers.js"></script>
     <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.14.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/facemesh@0.0.4"></script>
   </body>
 </html>

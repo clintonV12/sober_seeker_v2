@@ -3,7 +3,7 @@ import { Quiz } from './components/quiz.js';
 import { Info } from './components/info.js';
 import { Puzzle } from './components/puzzle.js';
 import { Physical } from './components/physical.js';
-import { PhysicalResult } from './components/physical_result.js';
+import { Physical2 } from './components/physical2.js';
 import { Transport } from './components/transport.js';
 
 let pagename = 'quiz'; // Default to 'home' page
@@ -40,34 +40,36 @@ async function router() {
             const script = document.createElement('script');
             script.src = 'app/question.js';
             script.async = true;
+            script.type = "module";
             document.body.appendChild(script);
             break;
         case 'info':
             content = await Info();
 
             const script1 = document.createElement('script');
-            script1.src = 'assets/js/info.js';
+            script1.src = 'app/info.js';
             script1.async = true;
             document.body.appendChild(script1);
             break;
         case 'puzzle':
             content = await Puzzle();
             const script2 = document.createElement('script');
-            script2.src = 'assets/js/puzzle.js';
+            script2.src = 'app/puzzle.js';
             script2.async = true;
+            script2.type = "module";
             document.body.appendChild(script2);
             break;
         case 'physical':
             content = await Physical();
             const script3 = document.createElement('script');
-            script3.src = 'assets/js/physical.js';
+            script3.src = 'app/physical.js';
             script3.async = true;
             document.body.appendChild(script3);
             break;
-        case 'physical_result':
-            content = await PhysicalResult();
+        case 'physical2':
+            content = await Physical2();
             const script4 = document.createElement('script');
-            script4.src = 'assets/js/physical_result.js';
+            script4.src = 'app/physical2.js';
             script4.async = true;
             document.body.appendChild(script4);
             break;

@@ -1,11 +1,20 @@
-<div class="scanner-container">
-    <video id="camera-stream" autoplay playsinline></video>
-    <div class="eye">
-        <div class="pupil"></div>
+<div class="card">
+    <div class="card-body text-center">
+      <div id="reactionTest" class="border border-dark rounded p-5 mb-3" style="background-color: #333; color: white; cursor: pointer; font-size: 1.5em;">
+        Click to Start
+      </div>
+      <p id="reactionResult" class="mb-2"></p>
+      <div class="progress mb-3">
+        <div id="reactionScore" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="1000"></div>
+      </div>
+      <div class="d-flex justify-content-around">
+        <p id="reactionAverage"><small>Avg: - ms</small></p>
+        <p id="reactionAttempts"><small>Attempts: 0/3</small></p>
+      </div>
+      <div class="card-body text-center">
+          <p id="result_display" class="mt-2"></p>
+          <p id="finalMessage" class="mt-2"></p>
+      </div>
     </div>
-    <div class="scanner"></div>
-    <div class="scan-text">Scanning...</div>
-    <div class="progress-container">
-        <div class="progress-bar" id="progress-bar"></div>
-    </div>
-</div>
+  </div>
+

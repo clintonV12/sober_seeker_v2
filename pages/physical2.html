@@ -1,0 +1,21 @@
+<div class="card mb-5">
+    <div class="card-body">
+        <h2>Face Sobriety Analysis</h2>
+        <p>Please allow camera access. The system will analyze facial features to detect signs of impairment.</p>
+
+        <div id="video-wrapper">
+            <video id="video" autoplay muted playsinline></video>
+            <canvas id="overlay"></canvas>
+        </div>
+
+        <div id="alerts-container" class="mt-4">
+            <div id="camera-error" class="alert alert-danger hidden">Camera access denied or unavailable.</div>
+            <div id="model-error" class="alert alert-danger hidden">Failed to load FaceMesh model. Please check your connection.</div>
+            <div id="detection-error" class="alert alert-danger hidden">Error during face detection. Please ensure your face is clearly visible.</div>
+            <div id="blink-alert" class="alert alert-warning hidden">Frequent blinking detected (possible drowsiness).</div>
+            <div id="head-tilt-alert" class="alert alert-warning hidden">Head tilt detected (possible imbalance).</div>
+            <div id="asymmetry-alert" class="alert alert-warning hidden">Facial asymmetry detected (possible impairment).</div>
+            <div id="yawn-alert" class="alert alert-warning hidden">Yawning detected (fatigue or intoxication).</div>
+        </div>
+    </div>
+</div>
